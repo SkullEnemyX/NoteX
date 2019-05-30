@@ -2,7 +2,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/material.dart' as prefix0;
 import 'package:notexfrontend/user.dart';
-import 'dart:async';
 
 void main() => runApp(NoteX());
 
@@ -43,8 +42,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   //Declaring functions
   _submit() async{
-    var url = 'http://127.0.0.1:8000/notex/signIn/?username=skullcrusher&password=hellox';
+    var url = 'http://127.0.0.1:8000/notex/userList/?username=skullcrushersss&password=helloxssss';
     var response = await http.post(url);
+    print(response.statusCode);
     print(response.body);
   }
 
@@ -91,6 +91,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
           ),
         ),
        Container(
+          padding : const EdgeInsets.all(50.0),
           width: MediaQuery.of(context).size.width /2,
           height: double.infinity,
           decoration: BoxDecoration(
@@ -98,7 +99,55 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
           ),
           child : Center(child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: (){},
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.white,
+                          fontFamily: 'Open Sans'
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Text("Or",style:TextStyle(
+                    fontSize: 28.0,
+                    color: Colors.grey.shade400,
+                    fontFamily: 'Open Sans'
+                  )),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: (){},
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          fontFamily: 'Open Sans',
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                    height: 20.0,
+                  ),
               Form(
                 autovalidate: true,
                 key: formKey,
@@ -109,7 +158,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                           inputDecorationTheme: InputDecorationTheme(
                             labelStyle: new TextStyle(
                               color: Colors.white,
-                              fontSize: 20.0,
+                              fontSize: 15.0,
                               fontFamily: 'Open Sans'
                             )
                           )
@@ -117,14 +166,14 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                 child: new Container(
                   height: screenHeight*0.5,
                   alignment: Alignment.center,
-                            padding: new EdgeInsets.symmetric(horizontal:35.0),
+                            //padding: new EdgeInsets.symmetric(horizontal:35.0),
                             child: new Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               //mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
                                 new TextFormField(
                                   decoration: new InputDecoration(
-                                    labelText: "Name"
+                                    labelText: "FULL NAME",
                                   ),
                                   validator: (val)=>val.isEmpty || val.substring(0)==null?'Names field is empty':null,
                                   keyboardType: TextInputType.text,
@@ -132,7 +181,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                 ),
                                 new TextFormField(
                                   decoration: new InputDecoration(
-                                    labelText: "User Name"
+                                    labelText: "USERNAME"
                                   ),
                                   keyboardType: TextInputType.text,
                                   validator: (val)=>val.isEmpty || val.substring(0)==null?'Password field is empty':null,
@@ -140,7 +189,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                 ),
                                 new TextFormField(
                                   decoration: new InputDecoration(
-                                    labelText: "E-mail Address"
+                                    labelText: "E-MAIL"
                                   ),
                                   validator: (val)=>!val.contains('@')?'Invalid E-mail':null,
                                   keyboardType: TextInputType.emailAddress,
@@ -148,7 +197,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                 ),
                                 new TextFormField(
                                   decoration: new InputDecoration(
-                                    labelText: "Password",
+                                    labelText: "PASSWORD",
                                     suffixIcon: IconButton(
                                     onPressed: (){
                                     if(_isobs)
@@ -183,8 +232,11 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                     print('elll');
                                   },
                                   padding: EdgeInsets.symmetric(horizontal: 40.0,vertical: 10.0),
-                                  child: new Text("Sign up"),
-                                  highlightColor: Colors.red,
+                                  child: new Text("Sign up",style: TextStyle(
+                                    fontSize: 17.0,
+                                    fontFamily: 'Open Sans'
+                                  ),),
+                                  highlightColor: Colors.tealAccent,
                                   splashColor: Colors.white,
                                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
                                 ),
